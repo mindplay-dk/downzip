@@ -5,7 +5,7 @@ export default {
     viteStaticCopy({
       targets: [
         {
-          src: 'node_modules/@dziegelbein/downzip/dist/downzip-sw.js',
+          src: 'node_modules/downzip/dist/downzip-sw.js',
           dest: '.'
         }
       ]

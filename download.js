@@ -1,4 +1,4 @@
-import DownZip from "@dziegelbein/downzip";
+import DownZip from "downzip";
 
 const ROOT_URL = window.location.origin;
 
@@ -17,6 +17,8 @@ export async function download(e) {
   //   size: 11111,
   // }));
 
+  e.preventDefault();
+
   const files = new Array(10).fill(null).map((_, i) => ({
     name: `big-${i+1}.7z`,
     downloadUrl: `${ROOT_URL}/files/big-${i+1}.7z`,
@@ -29,19 +31,8 @@ export async function download(e) {
   const downloadUrl = await downZip.downzip(
     downloadId,
     zipFileName,
-    files,
-    {
-      //responseHeaders: { 'Content-Type': 'application/zip' },
-      onProgress(progress) {
-        console.log(progress);
-      },
-      onError(error) {
-        console.error(error);
-      }
-    }
+    files
   );
-
-  e.preventDefault();
 
   window.location.href = `${ROOT_URL}/${downloadUrl}`;
 }
